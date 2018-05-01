@@ -1,0 +1,1 @@
+json.(@game, :id, :user_id)
