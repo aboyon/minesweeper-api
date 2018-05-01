@@ -10,11 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180430233734) do
+ActiveRecord::Schema.define(version: 20180501194531) do
 
   create_table "games", force: :cascade do |t|
     t.integer "user_id"
     t.boolean "terminated"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "bombs"
+    t.integer "cols"
+    t.integer "rows"
+  end
+
+  create_table "squares", force: :cascade do |t|
+    t.integer "game_id"
+    t.integer "x"
+    t.integer "y"
+    t.boolean "used"
+    t.boolean "bomb"
+    t.integer "bombs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
