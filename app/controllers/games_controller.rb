@@ -14,9 +14,16 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.create!(:user => current_user)
+    @game = Game.create!(create_params)
     render :create, :status => :created, :formats => :json
   rescue => e
     render :json => { :error => e.message }, :status => :unprocessable_entity
   end
+
+  private
+
+    def create_params
+      params.require(:game)
+        .permit(:rows, :cols, :bombs).merge!(:user_id => current_user.id)
+    end
 end
