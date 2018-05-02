@@ -5,8 +5,16 @@ class Game < ApplicationRecord
 
   after_create :build_grid
   validates :rows, :presence => true, :numericality => {:only_integer => true, :greater_than => 0}
-  validates :cols, :presence => true, :numericality => {:only_integer => true, :greater_than => 0 }
-  validates :bombs, :presence => true, :numericality => { :only_integer => true, :greater_than => 0, :less_than => :matrix_size }
+  validates :cols, :presence => true, :numericality => {:only_integer => true, :greater_than => 0}
+  validates :bombs, :presence => true, :numericality => {:only_integer => true, :greater_than => 0, :less_than => :matrix_size }
+
+  def coords(x,y)
+    squares.find_by(:x => x, :y => y)
+  end
+
+  def over!
+    update_attributes(:over => true)
+  end
 
   private
 

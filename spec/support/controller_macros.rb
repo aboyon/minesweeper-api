@@ -10,6 +10,10 @@ module RSpec
             .and_return(authenticated_user)
         end
       end
+
+      def ensure_request_headers
+        before { @request.env['HTTP_ACCEPT'] = "application/json" }
+      end
     end
   end
 end

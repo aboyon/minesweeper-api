@@ -8,4 +8,8 @@ class ApplicationController < ActionController::API
       @current_user = User.find_by(:session_token => token)
     end
   end
+
+  def not_found
+    head :not_found
+  end
 end

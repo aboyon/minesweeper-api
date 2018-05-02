@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe UsersController, :type => :controller do
   render_views
+  ensure_request_headers
 
   describe "#POST create" do
     let(:user_params) { attributes_for(:user) }

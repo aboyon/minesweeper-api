@@ -14,10 +14,10 @@ ActiveRecord::Schema.define(version: 20180501194531) do
 
   create_table "games", force: :cascade do |t|
     t.integer "user_id"
-    t.boolean "terminated"
+    t.boolean "over"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "bombs"
+    t.integer "bombs", default: 0
     t.integer "cols"
     t.integer "rows"
   end
@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20180501194531) do
     t.integer "game_id"
     t.integer "x"
     t.integer "y"
-    t.boolean "used"
-    t.boolean "bomb"
-    t.integer "bombs"
+    t.boolean "revealed", default: false
+    t.boolean "bomb", default: false
+    t.integer "bombs", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

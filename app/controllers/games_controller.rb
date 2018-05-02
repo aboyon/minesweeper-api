@@ -1,5 +1,8 @@
 class GamesController < ApplicationController
   before_action :authenticate_user!
+  before_action :load_game, :only => [:show, :reveal]
+
+  rescue_from ActiveRecord::RecordNotFound, :with => :not_found
 
   def index
     @games = current_user.games
@@ -7,10 +10,7 @@ class GamesController < ApplicationController
   end
 
   def show
-    @game = current_user.games.find(params[:id])
     render :show, :status => :ok, :formats => :json
-  rescue ActiveRecord::RecordNotFound => e
-    head :not_found
   end
 
   def create
@@ -20,10 +20,25 @@ class GamesController < ApplicationController
     render :json => { :error => e.message }, :status => :unprocessable_entity
   end
 
+  def reveal
+    square = @game.coords(play_params[:x], play_params[:y])
+    square.reveal!
+    render :show, :status => :ok, :formats => :json
+  rescue => e
+    render :json => { :error => e.message }, :status => :unprocessable_entity
+  end
+
   private
 
+    def load_game
+      @game = current_user.games.find(params[:id])
+    end
+
     def create_params
-      params.require(:game)
-        .permit(:rows, :cols, :bombs)
+      params.require(:game).permit(:rows, :cols, :bombs)
+    end
+
+    def play_params
+      params.permit(:x, :y)
     end
 end
