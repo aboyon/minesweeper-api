@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :users, only: [:create, :show], :defaults => { :format => :json }
-  resources :games, :defaults => { :format => :json } do
+  resources :games, except: [:update, :destroy], :defaults => { :format => :json } do
     member do
       put "reveal/:x/:y" => :reveal
     end
