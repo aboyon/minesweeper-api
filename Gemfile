@@ -4,12 +4,12 @@ gem 'rails', '~> 5.1.1'
 gem 'jbuilder', '~> 2.7'
 gem 'pg'
 gem 'listen', :group => [:development]
-gem 'sqlite3'
 gem 'seed_migration'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors'
 
 group :development, :test do
+  gem 'sqlite3'
   gem "pry"
 end
 
