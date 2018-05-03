@@ -8,9 +8,13 @@ class User < ApplicationRecord
   before_create :set_session_token
 
   def self.authenticate(email, password)
-    user = self.find_by(:email => email).try(:authenticate, password).tap do |u|
-      u.try(:set_session_token)
+    user = self.find_by(:email => email)
+    if user&.authenticate(password)
+      user.set_session_token
+      user.save
+      return user
     end
+    false
   end
 
   def set_session_token

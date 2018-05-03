@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180501194531) do
+ActiveRecord::Schema.define(version: 20180503012148) do
 
   create_table "games", force: :cascade do |t|
     t.integer "user_id"
@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(version: 20180501194531) do
     t.integer "bombs", default: 0
     t.integer "cols"
     t.integer "rows"
+  end
+
+  create_table "seed_migration_data_migrations", force: :cascade do |t|
+    t.string "version"
+    t.integer "runtime"
+    t.datetime "migrated_on"
   end
 
   create_table "squares", force: :cascade do |t|

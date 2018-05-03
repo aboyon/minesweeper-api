@@ -1,4 +1,5 @@
 json.array! @games do |game|
-  json.user_id game.user_id
+  json.(game, :id, :user_id, :rows, :cols, :bombs)
   json.over game.over?
+  json.terminated game.terminated?
 end

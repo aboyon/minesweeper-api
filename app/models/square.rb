@@ -16,7 +16,7 @@ class Square < ApplicationRecord
   end
 
   def reveal!
-    return if revealed?
+    return if revealed? || game.terminated?
     update_column(:revealed, true)
     [self].tap { |revealed|
       if bomb?

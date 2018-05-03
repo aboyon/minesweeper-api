@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/aboyon/minesweeper-api.svg?branch=master)](https://travis-ci.org/aboyon/minesweeper-api)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/9fb144bb3255486453ae/maintainability)](https://codeclimate.com/github/aboyon/minesweeper-api/maintainability)
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/9fb144bb3255486453ae/test_coverage)](https://codeclimate.com/github/aboyon/minesweeper-api/test_coverage)
+
 ## Summary
 
 This API provides game status persistence for the classic minesweeper game. Code incorporates the logic to build up the game's grid, performs validations, and terminate the game as soon as a bomb it's clicked. Each game belongs to an already registered user. 

@@ -7,6 +7,7 @@ gem 'listen', :group => [:development]
 gem 'sqlite3'
 gem 'seed_migration'
 gem 'bcrypt', '~> 3.1.7'
+gem 'rack-cors'
 
 group :development, :test do
   gem "pry"

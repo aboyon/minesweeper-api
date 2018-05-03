@@ -2,10 +2,16 @@ version: '3'
 services:
   db:
     image: postgres
+    environment:
+      - PGPSWD=Password123
+      - DB_NAME=buscaminasapp
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
   api:
     build: .
+    environment:
+      - POSTGRES_USER=postgres
+      - PGPSWD=Password123
     command: bundle exec rails s -p 3000 -b 0.0.0.0
     volumes:
       - .:/devigetapi/api

@@ -14,6 +14,11 @@ class Game < ApplicationRecord
 
   def over!
     update_attributes(:over => true)
+    squares.update_all(:revealed => true)
+  end
+
+  def terminated?
+    @terminated ||= (squares.where(:revealed => false).count == bombs)
   end
 
   private
@@ -25,7 +30,7 @@ class Game < ApplicationRecord
     def build_grid
       rows.times do |row|
         cols.times do |col|
-          squares.create(:x => row, :y => col)
+          squares.create(:x => col, :y => row)
         end
       end
 
